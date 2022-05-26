@@ -1,0 +1,3 @@
+services:
+    #- App\MainModule\Model\PigLatinManager
+    - App\MainModule\Presenters\PigLatinPresenter()
