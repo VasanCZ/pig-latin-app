@@ -7,29 +7,19 @@ namespace App\MainModule\Presenters;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
-
-/**
- * @property string $inputText
- */
+use App\MainModule\Model\PigLatinManager;
 
 final class PigLatinPresenter extends Presenter {
 
-    private string $inputText = "";
+    private string $outputText = "";
+    private $pigLatinManager;
 
-    public function getInputText(): string {
-        return $this->inputText;
-    }
-
-    public function setInputText($inputText): void {
-        $this->inputText = $inputText;
-    }
-
-    public function __construct() {
-        
+    public function __construct(PigLatinManager $pigLatinManager) {
+        $this->pigLatinManager = $pigLatinManager;
     }
 
     public function renderDefault(): void {
-        $this->template->translatedText = $this->getInputText();
+        $this->template->translatedText = $this->outputText;
     }
 
     protected function createComponentInputForm(): Form {
@@ -41,6 +31,6 @@ final class PigLatinPresenter extends Presenter {
     }
 
     public function formSucceeded(Form $form, $inputText): void {
-        $this->setInputText($inputText->text);
+        $this->outputText = $this->pigLatinManager->translateToPigLatin($inputText->text);
     }
 }

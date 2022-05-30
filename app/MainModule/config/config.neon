@@ -1,2 +1,2 @@
 services:
-    #- App\MainModule\Model\PigLatinManager
+    - App\MainModule\Model\PigLatinManager
