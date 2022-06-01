@@ -11,6 +11,7 @@ class PigLatinManager {
         
         $lowerText = strtolower($inputText);
         $lowerText = trim(preg_replace('/\s+/', ' ', $lowerText)); // Remove more spaces
+        $lowerText = trim(preg_replace('/[.,!?]/', '', $lowerText));
         $wordArray = explode(" ", $lowerText);
         $wordArray = array_filter($wordArray);
         
