@@ -19,13 +19,21 @@ class PigLatinManager {
             $charArray = str_split($word);          
             $charIndex = 0;
 
-            if (preg_match('/[aeiouy]/', substr($word, 0, 1))) {
+            // I need to practice regular expressions more
+            if (preg_match('/[aeiou]/', substr($word, 0, 1))) {
                 $outputText .= $word . "-way";
                 continue;
             }
             foreach ($charArray as $char) {
-
-                if (preg_match('/[aeiouy]/', $char)){
+                if (preg_match('/[y]/', substr($word, 0, 1))) {
+                    $charIndex = strpos($word, $char) + 1;
+                    break;
+                }
+                elseif ((strlen($word) == 2) && (preg_match('/[y]/', substr($word, 1, 1)))){
+                    $charIndex = strpos($word, $char) + 1;
+                    break;
+                }
+                elseif (preg_match('/[aeiou]/', $char)){
                     $charIndex = strpos($word, $char);
                     break;
                 }
