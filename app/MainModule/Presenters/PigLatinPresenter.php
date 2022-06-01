@@ -24,7 +24,11 @@ final class PigLatinPresenter extends Presenter {
 
     protected function createComponentInputForm(): Form {
         $form = new Form();
-        $form->addTextArea('text', '')->addRule($form::MAX_LENGTH, 'Max input length is 500', 500);
+        $form->addTextArea('text', '')
+            ->addRule($form::MAX_LENGTH, 'Max input length is 500', 500)
+            ->setHtmlAttribute('placeholder', 'Text to translate')
+            ->setAttribute('rows', 10)
+            ->setAttribute('cols', 50);
         $form->addSubmit('translate', 'Translate');
         $form->onSuccess[] = [$this, 'formSucceeded'];
         return $form;
